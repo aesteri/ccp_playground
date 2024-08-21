@@ -1,13 +1,12 @@
 
-{ stdenv, boost, cmake }:
+{ stdenv, cmake }:
 
+#make Derivation
 stdenv.mkDerivation rec {
-  pname = "cpp_playground";
+  pname = "target";
   version = "0.1.0";
   src = ./.;
-  nativeBuildInputs = [ boost cmake ];
-  # dontPatch = true;
-  # dontFixup = true;
-  # dontStrip = true;
-  # dontPatchELF = true;
+
+  #make install
+  nativeBuildInputs = [ cmake ];  
 }
