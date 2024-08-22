@@ -1,5 +1,5 @@
 
-{ stdenv, cmake }:
+{ stdenv, cmake, mybar }:
 
 #make Derivation
 stdenv.mkDerivation rec {
@@ -8,5 +8,8 @@ stdenv.mkDerivation rec {
   src = ./.;
 
   #make install
-  nativeBuildInputs = [ cmake ];  
+  nativeBuildInputs = [ cmake ]; 
+  buildInputs = [ mybar ];
+
+  
 }

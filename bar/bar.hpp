@@ -3,7 +3,8 @@
 
 #include "foo.hpp"
 
-class Bar : public Foo {
+
+class Bar : public Foo{
 public:
     void doSomething() override;
 };

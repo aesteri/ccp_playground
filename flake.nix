@@ -11,10 +11,32 @@
     # let in used to declare variables syntax: ${variable}
     let
       # A derivation is an instruction that Nix uses to realise a Nix package.
-      target_overlay = final: prev: {
-        # pay attention to callPackage 
-        target = final.callPackage ./default.nix { };
+      
+
+      target_overlay = final: prev: rec { 
+        mybar = final.callPackage ./mybar.nix { };
+
+        # derivation in other nix
+        # pay attention to callPackage !
+        target = final.callPackage ./default.nix { 
+          inherit mybar;
+        };
+
+        # derivation in same flake
+        # target = 
+        #  let 
+        #    inherit (pkgs) stdenv cmake;
+        #    inherit (library_overlay pkgs) bar;
+        #  in
+        #    stdenv.mkDerivation rec {
+        #   pname = "target";
+        #    version = "0.1.0";
+        #   src = ./.;
+        #    nativeBuildInputs = [ cmake ];  
+        #    buildInputs = [ final.bar ];
+        #    };
       };
+
       my_overlays = [ target_overlay ];
 
       #correct pkgs for the corresponding system
@@ -27,7 +49,6 @@
       #this is for nix build  
       overlays.default = nixpkgs.lib.composeManyExtensions my_overlays;
       packages.x86_64-darwin.default = pkgs.target;
-    
 
       #for the dev shell -nix develop
       devShells.x86_64-darwin.default =
@@ -37,6 +58,7 @@
           packages = with pkgs; [
             # Development Tools
             cmake
+            mybar
             target
           ];
 
