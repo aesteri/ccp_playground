@@ -26,6 +26,12 @@ target_include_directories(target PUBLIC
                           "${PROJECT_SOURCE_DIR}/bar"
                           )
 
+# be sure that you use the generator expressions
+# ($<BUILD_INTERFACE: and $<INSTALL_INTERFACE:) for your include directory setups
+target_include_directories(target PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
 set_target_properties(target PROPERTIES CXX_STANDARD 17)
 target_compile_features(target PUBLIC cxx_std_17)
 

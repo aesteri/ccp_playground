@@ -13,6 +13,7 @@
       # A derivation is an instruction that Nix uses to realise a Nix package.
       
 
+      #target_overlay = final: prev: rec { 
       target_overlay = final: prev: rec { 
         mybar = final.callPackage ./mybar.nix { };
 

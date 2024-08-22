@@ -2,7 +2,7 @@
 { stdenv, cmake, mybar }:
 
 #make Derivation
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "target";
   version = "0.1.0";
   src = ./.;
@@ -10,6 +10,5 @@ stdenv.mkDerivation rec {
   #make install
   nativeBuildInputs = [ cmake ]; 
   buildInputs = [ mybar ];
-
   
 }
