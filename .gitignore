@@ -1,5 +1,4 @@
 build/
+result/
 .vscode/
 bar/build/
-result/bin/
-result/
