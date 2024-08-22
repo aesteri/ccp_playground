@@ -59,7 +59,6 @@
           packages = with pkgs; [
             # Development Tools
             cmake
-            mybar
             target
           ];
 

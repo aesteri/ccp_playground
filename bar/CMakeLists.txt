@@ -24,11 +24,10 @@ install(TARGETS foo bar
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-    PUBLIC_HEADER DESTINATION include
 )
 
 # Install header files
-# install(FILES bar.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES bar.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 # Configure and install the package config file
 include(CMakePackageConfigHelpers)
@@ -45,7 +44,7 @@ install(FILES
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/bar
 )
 
- Export targets for use in other projects
+# Export targets for use in other projects
 install(EXPORT barTargets
     FILE barTargets.cmake
     NAMESPACE bar::
