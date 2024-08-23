@@ -7,7 +7,7 @@ project(
 find_package(bar REQUIRED)
 
 #declare executable
-add_executable(target playing.cpp)
+add_executable(target app/playing.cpp)
 
 #link together
 target_link_libraries(target PUBLIC bar::bar)
