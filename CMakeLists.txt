@@ -15,10 +15,13 @@ target_link_libraries(target PUBLIC bar::bar)
 
 target_include_directories(target PUBLIC
                           "${PROJECT_BINARY_DIR}"
-                          "${PROJECT_SOURCE_DIR}/bar"
+                          "${PROJECT_SOURCE_DIR}/include"
                           )
 
-
+target_include_directories(target PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
 set_target_properties(target PROPERTIES CXX_STANDARD 17)
 target_compile_features(target PUBLIC cxx_std_17)
 

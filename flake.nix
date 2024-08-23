@@ -4,23 +4,20 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     utils.url = "github:numtide/flake-utils";
-    
+    mybar.url = "github:aesteri/libbar";
   };
   
-  outputs = { self, nixpkgs, utils }:
+  outputs = { self, nixpkgs, utils, mybar }:
     # let in used to declare variables syntax: ${variable}
     let
       # A derivation is an instruction that Nix uses to realise a Nix package.
-      
+
 
       #target_overlay = final: prev: rec { 
       target_overlay = final: prev: rec { 
-        mybar = final.callPackage ./mybar.nix { };
-
         # derivation in other nix
         # pay attention to callPackage !
         target = final.callPackage ./default.nix { 
-          inherit mybar;
         };
 
         # derivation in same flake
@@ -32,13 +29,13 @@
         #    stdenv.mkDerivation rec {
         #   pname = "target";
         #    version = "0.1.0";
-        #   src = ./.;
+        #   src = .bar/.;
         #    nativeBuildInputs = [ cmake ];  
-        #    buildInputs = [ final.bar ];
+        #    buildInputs = [ final.library ];
         #    };
       };
 
-      my_overlays = [ target_overlay ];
+      my_overlays = [ target_overlay mybar.overlays.default];
 
       #correct pkgs for the corresponding system
       pkgs = import nixpkgs {

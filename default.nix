@@ -9,6 +9,6 @@ stdenv.mkDerivation {
 
   #make install
   nativeBuildInputs = [ cmake ]; 
-  buildInputs = [ mybar ];
-  
-}
+  buildInputs = [mybar];
+
+} 
