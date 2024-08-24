@@ -1,5 +1,5 @@
 build/
-result/
+/result/
 .vscode/
 .DS_Store/
 bar/build/
