@@ -7,10 +7,10 @@ project(
 # Find locally built library 'bar'
 find_package(bar REQUIRED)
 
-#declare executable
+# declare executable
 add_executable(target app/playing.cpp)
 
-#link together 
+# link together 
 # namespace!
 target_link_libraries(target PUBLIC bar::bar)
 

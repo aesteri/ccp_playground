@@ -9,5 +9,5 @@ int main()
     bar.doSomething();  // Uses Bar's implementation of Foo
     Foo foo;
     foo.doSomething(); // Polymorphically calls Bar's implementation
-    return 0;
+    return 1;
 }
